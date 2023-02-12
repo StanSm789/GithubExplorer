@@ -1,6 +1,6 @@
-# The Galaxy Names App
+# Github Explorer App
 
-TheGalaxyNames is a Go application that provides access to a list of random GitHub users.
+The GithubExplorer is a Go/React application that provides access to a list of random GitHub users. The Go app imitates the backend, while the React acts as the frontend. The following instruction is how to run the Go app using Docker.
 
 ## Prerequisites
 
