@@ -1,66 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Table } from "antd";
 
 const columns = [
-    {
+  {
     title: "Avatar",
     dataIndex: "avatar_url",
     key: "avatar_url",
-    render: (text, record) => <img src={record.avatar_url} alt={record.Name} />,
-    },
-    {
-        title: "Name",
-        dataIndex: "login",
-        key: "login",
-    },
-    {
-        title: "Type",
-        dataIndex: "type",
-        key: "type",
-    },
-    {
-        title: "URL",
-        dataIndex: "url",
-        key: "url",
-        render: (text, record) => (
-        <a href={record.url} target="_blank" rel="noopener noreferrer">
-            {record.url}
-        </a>
-        ),
-    },
-];
-
-const data = [
-  {
-    key: 1,
-    avatar_url: "https://example.com/avatar1.jpg",
-    login: "John Doe",
-    type: "Person",
-    url: "https://example.com/john_doe",
+    render: (text, record) => <img src={record.avatar_url} alt={record.Name} 
+    style={{ width: 100, height: 100 }}/>,
   },
   {
-    key: 2,
-    avatar_url: "https://example.com/avatar2.jpg",
-    login: "Jane Doe",
-    type: "Person",
-    url: "https://example.com/jane_doe",
+    title: "Name",
+    dataIndex: "login",
+    key: "login",
   },
   {
-    key: 3,
-    avatar_url: "https://example.com/avatar3.jpg",
-    login: "Jim Smith",
-    type: "Person",
-    url: "https://example.com/jim_smith",
+    title: "Type",
+    dataIndex: "type",
+    key: "type",
+  },
+  {
+    title: "URL",
+    dataIndex: "url",
+    key: "url",
+    render: (text, record) => (
+      <a href={record.url} target="_blank" rel="noopener noreferrer">
+        {record.url}
+      </a>
+    ),
   },
 ];
 
 const MainPage = () => {
+    const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/")
+      .then((res) => res.json())
+      .then((data) => setUsers(data))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <Table
       columns={columns}
-      dataSource={data}
+      dataSource={users}
       pagination={{ pageSize: 10 }}
-      scroll={{ y: 240 }}
+      scroll={{ y: "calc(100vh - 200px)" }}
     />
   );
 };
