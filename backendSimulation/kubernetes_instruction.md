@@ -27,15 +27,15 @@ This command will start a Minikube cluster.
 minikube status
 ```
 
-### Deploy the Webapp
+### Deploy the Backend
 
-1. Run the following command to deploy the webapp:
+1. Run the following command to deploy the backend:
 
 ```
-kubectl apply -f webapp.yaml
+kubectl apply -f backend.yaml
 ```
 
-### Access the Webapp from the browser
+### Access the Backend from the browser
 
 1. Run the following command to get the IP address of the Minikube cluster:
 
@@ -43,7 +43,7 @@ kubectl apply -f webapp.yaml
 minikube ip
 ```
 
-2. Open your browser and access the webapp using the following URL:
+2. Open your browser and access the backend using the following URL:
 
 ```
 <Minikube IP>:<NodePort>
@@ -51,12 +51,12 @@ minikube ip
 
 Please note that there might be a small delay before the application starts functioning properly when accessing the URL.
 
-### Access the Webapp using Minikube Service
+### Access the Backend using Minikube Service
 
-If you can't access the NodePort service webapp with Minikube IP: NodePort, execute the following command:
+If you can't access the NodePort service backend with Minikube IP: NodePort, execute the following command:
 
 ```
-minikube service webapp-service
+minikube service backend-service
 ```
 
 ### Stop the Cluster
